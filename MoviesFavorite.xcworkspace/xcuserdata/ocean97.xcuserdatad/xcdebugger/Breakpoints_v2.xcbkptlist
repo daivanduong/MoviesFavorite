@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "66AF1D26-2B12-47D9-8784-FE65E7F53AD2"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1EC8961E-F0A9-4069-B41C-4C4E9E1E3C0D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "getData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "24C549AD-960B-4DF7-A15C-E9BC6A43FEF5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "getData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "24C549AD-960B-4DF7-A15C-E9BC6A43FEF5 - 50b8d12030c1be1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoviesFavorite.DetailViewModel.getData() -&gt; ()"
+                  moduleName = "MoviesFavorite"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/IOS/MoviesFavorite/MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "24C549AD-960B-4DF7-A15C-E9BC6A43FEF5 - 50b8d12030c1be1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoviesFavorite.DetailViewModel.getData() -&gt; ()"
+                  moduleName = "MoviesFavorite"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/IOS/MoviesFavorite/MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8368EA2A-3616-4048-AA3A-9B7BE5AD4604"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "saveMovieToFavorite(indexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8368EA2A-3616-4048-AA3A-9B7BE5AD4604 - b7a32472208976ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoviesFavorite.DetailViewModel.covertStringToDate(string: Swift.String) -&gt; Swift.Int"
+                  moduleName = "MoviesFavorite"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/IOS/MoviesFavorite/MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "880">
+               </Location>
+               <Location
+                  uuid = "8368EA2A-3616-4048-AA3A-9B7BE5AD4604 - b7a32472208976ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoviesFavorite.DetailViewModel.covertStringToDate(string: Swift.String) -&gt; Swift.Int"
+                  moduleName = "MoviesFavorite"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/IOS/MoviesFavorite/MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1012">
+               </Location>
+               <Location
+                  uuid = "8368EA2A-3616-4048-AA3A-9B7BE5AD4604 - 28397f5aa86f1077"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MoviesFavorite.DetailViewModel.saveMovieToFavorite(indexPath: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "MoviesFavorite"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/IOS/MoviesFavorite/MoviesFavorite/ViewModel/DetailViewModel/DetailViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "696">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A3457DA-826B-41D8-BCC8-6452D5CD5297"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MoviesFavorite/ViewModel/SearchViewModel/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "callAPI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
