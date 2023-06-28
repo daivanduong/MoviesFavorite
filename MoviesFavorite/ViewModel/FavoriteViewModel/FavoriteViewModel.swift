@@ -10,14 +10,17 @@ import UIKit
 
 class FavoriteViewModel: FavoriteViewModelProtocol {
     var reloadUI: (() -> ())?
-    
-    var movie = [Movie]()
+    private var movie = [Movie]()
+    private var check = false
     
     func getData() {
         if let data = UserDefaults.standard.data(forKey: "MovieFavorite") {
             movie = try! PropertyListDecoder().decode([Movie].self, from: data)
-            self.reloadUI?()
+            if movie.count != 0 {
+                check = true
+            }
         }
+        reloadUI?()
     }
     func numberOfRowsInSection(section: Int) -> Int {
         return movie.count
@@ -29,21 +32,12 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
         let price = movie[indexPath.row].collectionPrice ?? 0.0
         let UrlDefaults = URL(string: "https://placehold.co/100")!
         let url = URL(string: "\(movie[indexPath.row].artworkUrl100 ?? "")") ?? UrlDefaults
-        
-        
-        
         return (name ?? "", primaryGenre ?? "", year, price, url)
     }
     
-    func getItemInMovieDetail(indexPath: IndexPath) {
-        let data = movie[indexPath.row]
-        let movieDeatil = Movie(trackId: data.trackId, artistName: data.artistName, collectionName: data.collectionName, previewUrl: data.previewUrl, artworkUrl100: data.artworkUrl100, collectionPrice: data.collectionPrice, primaryGenreName: data.primaryGenreName, releaseDate: data.releaseDate, longDescription: data.longDescription)
-        var arrMovie = [Movie]()
-        arrMovie.append(movieDeatil)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(arrMovie), forKey: "MovieDetail")
-        
+    func getDataItemDetail(indexPath: IndexPath) -> Movie {
+        return movie[indexPath.row]
     }
-    
     
     func deledeRowFortable(table: UITableView,editingStyle: UITableViewCell.EditingStyle ,index: IndexPath) {
         if editingStyle == .delete {
@@ -53,10 +47,15 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
             table.deleteRows(at: [index], with: .fade)
             if movie.count != 0 {
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(movie), forKey: "MovieFavorite")
+            }else {
+                check = false
             }
             
             table.endUpdates()
         }
+    }
+    func showNotification() -> Bool {
+        return check
     }
     
     func covertStringToDate(string: String) -> Int {

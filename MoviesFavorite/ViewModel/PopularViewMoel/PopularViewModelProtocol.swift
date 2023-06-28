@@ -11,5 +11,5 @@ protocol PopularViewModelProtocol {
     var reloaUI: (() -> ())? { get set }
     func numberOfRowsInSection(section: Int) -> Int
     func getTitleMoviePopular(indexPath: IndexPath) -> String
-    
+    func getLastTimeOpenApp() -> Int
 }

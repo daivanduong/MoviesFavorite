@@ -28,10 +28,11 @@ class SearchViewModel: SearchViewModelProtocol {
                 } else {
                     self?.check = false
                 }
+                if movielData?.resultCount == 0 {
+                    self?.check = false
+                }
                 self?.reloadUI?()
-                
             }
-            
         } .resume()
     }
     func showNotification() -> Bool {
@@ -52,14 +53,9 @@ class SearchViewModel: SearchViewModelProtocol {
         return (name ?? "", primaryGenre ?? "", year, price, url)
     }
     
-    
-    func getDataFordetail(indexPath: IndexPath) {
+    func getDataItemDetail(indexPath: IndexPath) -> Movie {
         let data = movie?.results?[indexPath.row]
-        let movieDeatil = Movie(trackId: data?.trackId, artistName: data?.artistName, collectionName: data?.collectionName, previewUrl: data?.previewUrl, artworkUrl100: data?.artworkUrl100, collectionPrice: data?.collectionPrice, primaryGenreName: data?.primaryGenreName, releaseDate: data?.releaseDate, longDescription: data?.longDescription)
-        var arrMovie = [Movie]()
-        arrMovie.append(movieDeatil)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(arrMovie), forKey: "MovieDetail")
-        
+        return data!
     }
     
     func urlComponents(url: URL, categories: String) -> URL {
@@ -82,19 +78,17 @@ class SearchViewModel: SearchViewModelProtocol {
         
         if let dataFavorite = UserDefaults.standard.data(forKey: "MovieFavorite") {
             var movieFavorite = try! PropertyListDecoder().decode([Movie].self, from: dataFavorite)
-            let check_unique = movieFavorite.contains(where: { MovieFavorite in
-                MovieFavorite.trackId == movie?.results?[indexPath.row].trackId
+            let checkUniqueItemInFavorites = movieFavorite.contains(where: { MovieFavorite in
+                MovieFavorite.trackId == data?.trackId
             })
-            if check_unique == false {
-                let movieDeatail = Movie(trackId: data?.trackId, artistName: data?.artistName, collectionName: data?.collectionName, previewUrl: data?.previewUrl, artworkUrl100: data?.artworkUrl100, collectionPrice: data?.collectionPrice, primaryGenreName: data?.primaryGenreName, releaseDate: data?.releaseDate, longDescription: data?.longDescription)
-                movieFavorite.append(movieDeatail)
+            if checkUniqueItemInFavorites == false {
+                movieFavorite.append(data!)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
             }
             
         } else {
-            let movieDeatail = Movie(trackId: data?.trackId, artistName: data?.artistName, collectionName: data?.collectionName, previewUrl: data?.previewUrl, artworkUrl100: data?.artworkUrl100, collectionPrice: data?.collectionPrice, primaryGenreName: data?.primaryGenreName, releaseDate: data?.releaseDate, longDescription: data?.longDescription)
             var movieFavorite = [Movie]()
-            movieFavorite.append(movieDeatail)
+            movieFavorite.append(data!)
             UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
         }
         
@@ -103,10 +97,10 @@ class SearchViewModel: SearchViewModelProtocol {
     func checkItemForFavorite(indexPath: IndexPath) -> String {
         if let dataFavorite = UserDefaults.standard.data(forKey: "MovieFavorite") {
             movieFavorite = try! PropertyListDecoder().decode([Movie].self, from: dataFavorite)
-            let check_unique = movieFavorite.contains(where: { MovieFavorite in
+            let checkUniqueItemInFavorites = movieFavorite.contains(where: { MovieFavorite in
                 MovieFavorite.trackId == movie?.results?[indexPath.row].trackId
             })
-            if check_unique == true {
+            if checkUniqueItemInFavorites == true {
                 return "Liked"
             }
         }

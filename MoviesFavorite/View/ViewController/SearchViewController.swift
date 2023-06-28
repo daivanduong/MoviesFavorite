@@ -13,18 +13,21 @@ class SearchViewController: UIViewController {
     var viewModel: SearchViewModelProtocol!
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var notificationLb: UILabel!
+    @IBOutlet weak var viewNotification: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //viewModel.callAPITest(text: "star wars")
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     func setupView() {
-        notificationLb.isHidden = true
+        viewNotification.isHidden = true
         viewModel.callAPI()
         activityIndicator.startAnimating()
         tableView.delegate = self
@@ -32,14 +35,12 @@ class SearchViewController: UIViewController {
 
         let nib = UINib(nibName: "MovieViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "movieViewCell")
-        
-       
-        
+
         viewModel.reloadUI = {
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
-                self.notificationLb.isHidden = self.viewModel.showNotification()
+                self.viewNotification.isHidden = self.viewModel.showNotification()
                 self.tableView.reloadData()
             }
         }
@@ -71,9 +72,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "detailViewController")
-        viewModel.getDataFordetail(indexPath: indexPath)
-        
+        let vc = sb.instantiateViewController(identifier: "detailViewController") as! DetailViewController
+        let vm = DetailViewModel(movie: viewModel.getDataItemDetail(indexPath: indexPath))
+        vc.viewModel = vm        
         navigationController?.pushViewController(vc, animated: true)
     }
  

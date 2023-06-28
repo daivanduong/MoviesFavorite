@@ -14,12 +14,15 @@ class PopularViewController: UIViewController {
     let searchControler = UISearchController(searchResultsController: nil)
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeOpenedLb: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupNavigatitonBar()
+       
         setupView()
+        setupNavigatitonBar()
         //updateSearchResults(for: searchControler)
     }
     func setupNavigatitonBar() {
@@ -39,7 +42,10 @@ class PopularViewController: UIViewController {
         
         let nib = UINib(nibName: "TitleMoviePopularViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "titleMoviePopularViewCell")
+        
+        timeOpenedLb.text = "Last visited: \(viewModel.getLastTimeOpenApp()) minute ago"
     }
+    
 
 }
 extension PopularViewController: UISearchResultsUpdating {
@@ -58,12 +64,14 @@ extension PopularViewController: UISearchResultsUpdating {
 
 extension PopularViewController: UISearchTextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.text!)
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "searchViewController") as! SearchViewController
-        let vm = SearchViewModel(titleMovie: textField.text!)
-        vc.viewModel = vm
-        navigationController?.pushViewController(vc, animated: true)
+        if textField.text != "" {
+            let vm = SearchViewModel(titleMovie: textField.text!)
+            vc.viewModel = vm
+            navigationController?.pushViewController(vc, animated: true)
+        }
+       
     }
 }
 
@@ -82,7 +90,6 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //viewModel.selectCellForSection(indexPaths: indexPath)
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "searchViewController") as! SearchViewController
         let vm = SearchViewModel(titleMovie: viewModel.getTitleMoviePopular(indexPath: indexPath))

@@ -13,6 +13,7 @@ protocol FavoriteViewModelProtocol {
     func getData()
     func numberOfRowsInSection(section: Int) -> Int
     func getDataInMovie(indexPath: IndexPath) -> (name: String, primaryGenre:String, year: Int, price: Double, imgURL: URL )
-    func getItemInMovieDetail(indexPath: IndexPath)
+    func getDataItemDetail(indexPath: IndexPath) -> Movie
     func deledeRowFortable(table: UITableView,editingStyle: UITableViewCell.EditingStyle ,index: IndexPath)
+    func showNotification() -> Bool
 }

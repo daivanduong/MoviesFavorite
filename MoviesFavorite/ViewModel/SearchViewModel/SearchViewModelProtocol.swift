@@ -13,7 +13,7 @@ protocol SearchViewModelProtocol {
     func showNotification() -> Bool
     func numberOfRowsInSection(section: Int) -> Int
     func getDataFromApi(indexPath: IndexPath) -> (name: String, primaryGenre:String, year: Int, price: Double, imgURL: URL )
-    func getDataFordetail(indexPath: IndexPath)
+    func getDataItemDetail(indexPath: IndexPath) -> Movie
     func urlComponents(url: URL, categories: String) -> URL
     func checkItemForFavorite(indexPath: IndexPath) -> String
     func saveMovieToFavorite(indexPath: IndexPath)
