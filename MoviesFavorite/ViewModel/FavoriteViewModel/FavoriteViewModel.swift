@@ -22,9 +22,11 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
         }
         reloadUI?()
     }
+    
     func numberOfRowsInSection(section: Int) -> Int {
         return movie.count
     }
+    
     func getDataInMovie(indexPath: IndexPath) -> (trackName: String, primaryGenre: String, year: Int, price: Double, imgURL: URL) {
         let trackName = movie[indexPath.row].trackName
         let primaryGenre = movie[indexPath.row].primaryGenreName
@@ -50,10 +52,10 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
             }else {
                 check = false
             }
-            
             table.endUpdates()
         }
     }
+    
     func showNotification() -> Bool {
         return check
     }

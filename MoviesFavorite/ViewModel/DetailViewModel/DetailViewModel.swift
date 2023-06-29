@@ -48,6 +48,7 @@ class DetailViewModel: DetailViewModelProtocol {
         }
         return false
     }
+    
     func saveMovieToFavorite(indexPath: IndexPath) {
         if let dataFavorite = UserDefaults.standard.data(forKey: "MovieFavorite") {
             var movieFavorite = try! PropertyListDecoder().decode([Movie].self, from: dataFavorite)
@@ -65,7 +66,6 @@ class DetailViewModel: DetailViewModelProtocol {
         }
         
     }
-    
     
     func covertStringToDate(string: String) -> Int {
         let dateFormatter = DateFormatter()

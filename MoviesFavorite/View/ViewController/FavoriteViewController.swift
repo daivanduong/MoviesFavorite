@@ -74,6 +74,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         vc.viewModel = vm
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }

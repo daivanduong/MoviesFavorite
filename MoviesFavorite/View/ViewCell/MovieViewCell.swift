@@ -29,6 +29,7 @@ class MovieViewCell: UITableViewCell {
         // Configure the view for the selected state
         setupView()
     }
+    
     func setupView() {
         imgThumb.layer.cornerRadius = 10
         year.layer.cornerRadius = 10
@@ -36,6 +37,7 @@ class MovieViewCell: UITableViewCell {
         likeButton.layer.cornerRadius = 10
         
     }
+    
     func setupButton() {
         if likeButton.titleLabel?.text == "Like" {
             likeButton.setTitle("Liked", for: .normal)

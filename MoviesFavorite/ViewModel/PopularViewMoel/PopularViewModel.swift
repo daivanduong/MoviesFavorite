@@ -29,6 +29,4 @@ class PopularViewMoel: PopularViewModelProtocol {
         return ""
     }
     
-    
-    
 }

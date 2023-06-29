@@ -34,6 +34,7 @@ class SearchViewModel: SearchViewModelProtocol {
             }
         } .resume()
     }
+    
     func showNotification() -> Bool {
         return check
     }
@@ -53,8 +54,7 @@ class SearchViewModel: SearchViewModelProtocol {
     }
     
     func getDataItemDetail(indexPath: IndexPath) -> Movie {
-        let data = movie?.results?[indexPath.row]
-        return data!
+        return (movie?.results?[indexPath.row])!
     }
     
     func urlComponents(url: URL, categories: String) -> URL {
@@ -63,6 +63,7 @@ class SearchViewModel: SearchViewModelProtocol {
         components?.queryItems = [queryItemCategories]
         return (components?.url)!
     }
+    
     func covertStringToDate(string: String) -> Int {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -72,6 +73,7 @@ class SearchViewModel: SearchViewModelProtocol {
         let components = calendar.dateComponents([.year], from: date)
         return components.year ?? 0
     }
+    
     func saveMovieToFavorite(indexPath: IndexPath) {
         let data = movie?.results?[indexPath.row]
         
@@ -84,7 +86,6 @@ class SearchViewModel: SearchViewModelProtocol {
                 movieFavorite.append(data!)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
             }
-            
         } else {
             var movieFavorite = [Movie]()
             movieFavorite.append(data!)
