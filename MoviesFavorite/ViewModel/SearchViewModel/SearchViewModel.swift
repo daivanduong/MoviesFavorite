@@ -24,11 +24,10 @@ class SearchViewModel: SearchViewModelProtocol {
             if let data = data {
                 let movielData = try? JSONDecoder().decode(MovieAPI.self, from: data)
                 if movielData != nil {
-                    self?.movie = movielData
+                    if movielData?.resultCount != 0 {
+                        self?.movie = movielData
+                    }
                 } else {
-                    self?.check = false
-                }
-                if movielData?.resultCount == 0 {
                     self?.check = false
                 }
                 self?.reloadUI?()
@@ -43,14 +42,14 @@ class SearchViewModel: SearchViewModelProtocol {
         return movie?.results?.count ?? 0
     }
     
-    func getDataFromApi(indexPath: IndexPath) -> (name: String, primaryGenre: String, year: Int, price: Double, imgURL: URL) {
-        let name = movie?.results?[indexPath.row].collectionName
+    func getDataFromApi(indexPath: IndexPath) -> (trackName: String, primaryGenre: String, year: Int, price: Double, imgURL: URL) {
+        let trackName = movie?.results?[indexPath.row].trackName
         let primaryGenre = movie?.results?[indexPath.row].primaryGenreName
         let year = covertStringToDate(string: movie?.results?[indexPath.row].releaseDate ?? "")
         let price = movie?.results?[indexPath.row].collectionPrice ?? 0.0
         let UrlDefaults = URL(string: "https://placehold.co/100")!
         let url = URL(string: "\(movie?.results?[indexPath.row].artworkUrl100 ?? "")") ?? UrlDefaults
-        return (name ?? "", primaryGenre ?? "", year, price, url)
+        return (trackName ?? "", primaryGenre ?? "", year, price, url)
     }
     
     func getDataItemDetail(indexPath: IndexPath) -> Movie {

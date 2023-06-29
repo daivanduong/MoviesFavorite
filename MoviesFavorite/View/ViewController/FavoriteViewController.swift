@@ -54,7 +54,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieViewCell", for: indexPath) as! MovieViewCell
-        cell.name.text = viewModel.getDataInMovie(indexPath: indexPath).name
+        cell.trackName.text = viewModel.getDataInMovie(indexPath: indexPath).trackName
         cell.primaryGenre.text = viewModel.getDataInMovie(indexPath: indexPath).primaryGenre
         cell.year.text = "\(viewModel.getDataInMovie(indexPath: indexPath).year)"
         cell.price.text = "$\(viewModel.getDataInMovie(indexPath: indexPath).price)"

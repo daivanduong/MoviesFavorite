@@ -25,14 +25,14 @@ class FavoriteViewModel: FavoriteViewModelProtocol {
     func numberOfRowsInSection(section: Int) -> Int {
         return movie.count
     }
-    func getDataInMovie(indexPath: IndexPath) -> (name: String, primaryGenre: String, year: Int, price: Double, imgURL: URL) {
-        let name = movie[indexPath.row].collectionName
+    func getDataInMovie(indexPath: IndexPath) -> (trackName: String, primaryGenre: String, year: Int, price: Double, imgURL: URL) {
+        let trackName = movie[indexPath.row].trackName
         let primaryGenre = movie[indexPath.row].primaryGenreName
         let year = covertStringToDate(string: movie[indexPath.row].releaseDate ?? "")
         let price = movie[indexPath.row].collectionPrice ?? 0.0
         let UrlDefaults = URL(string: "https://placehold.co/100")!
         let url = URL(string: "\(movie[indexPath.row].artworkUrl100 ?? "")") ?? UrlDefaults
-        return (name ?? "", primaryGenre ?? "", year, price, url)
+        return (trackName ?? "", primaryGenre ?? "", year, price, url)
     }
     
     func getDataItemDetail(indexPath: IndexPath) -> Movie {

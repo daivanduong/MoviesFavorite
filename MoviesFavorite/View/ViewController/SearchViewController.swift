@@ -55,7 +55,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieViewCell", for: indexPath) as! MovieViewCell
-        cell.name.text = viewModel.getDataFromApi(indexPath: indexPath).name
+        cell.trackName.text = viewModel.getDataFromApi(indexPath: indexPath).trackName
         cell.primaryGenre.text = viewModel.getDataFromApi(indexPath: indexPath).primaryGenre
         cell.year.text = "\(viewModel.getDataFromApi(indexPath: indexPath).year)"
         cell.price.text = "$\(viewModel.getDataFromApi(indexPath: indexPath).price)"

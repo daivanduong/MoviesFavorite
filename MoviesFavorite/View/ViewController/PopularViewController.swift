@@ -25,6 +25,8 @@ class PopularViewController: UIViewController {
         setupNavigatitonBar()
         //updateSearchResults(for: searchControler)
     }
+    
+    
     func setupNavigatitonBar() {
         title = "Search"
         searchControler.searchResultsUpdater = self
@@ -43,7 +45,7 @@ class PopularViewController: UIViewController {
         let nib = UINib(nibName: "TitleMoviePopularViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "titleMoviePopularViewCell")
         
-        timeOpenedLb.text = "Last visited: \(viewModel.getLastTimeOpenApp()) minute ago"
+        timeOpenedLb.text = viewModel.getLastTimeOpenApp()
     }
     
 

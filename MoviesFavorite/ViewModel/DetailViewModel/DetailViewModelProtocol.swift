@@ -9,9 +9,9 @@ import Foundation
 
 protocol DetailViewModelProtocol {
     var reloadUI: (() -> ())? {get set}
-    func getDataInMovieDetail(indexPath: IndexPath) -> (name: String, primaryGenre:String, year: Int, price: Double, imgURL: URL )
+    func getDataInMovieDetail(indexPath: IndexPath) -> (trackName: String, primaryGenre:String, year: Int, price: Double, imgURL: URL )
     func getDescription() -> String
-    func getUrlVideo() -> URL
+    func getUrlVideoPreview() -> URL
+    func isHiddenButtonLike() -> Bool
     func saveMovieToFavorite(indexPath: IndexPath)
-    func checkItemForFavorites() -> String
 }

@@ -17,14 +17,16 @@ class PopularViewMoel: PopularViewModelProtocol {
     func getTitleMoviePopular(indexPath: IndexPath) -> String {
         return arrTitleMoviePopular[indexPath.row]
     }
-    func getLastTimeOpenApp() -> Int {
-        guard let lastOpened = UserDefaults.standard.object(forKey: "LastOpened") as? Date else {
-            return 0
+    
+    func getLastTimeOpenApp() -> String {
+        if let lastOpened = UserDefaults.standard.object(forKey: "LastOpened") as? Date {
+            let elapsed = Calendar.current.dateComponents([.hour, .minute], from: lastOpened, to: Date())
+            if elapsed.minute ?? 0 < 60 {
+                return "Last visited: \(elapsed.minute!) minute ago "
+            }
+            return "Last visited: \(elapsed.hour!) hour ago "
         }
-        let elapsed = Calendar.current.dateComponents([.minute], from: lastOpened, to: Date())
-        
-        
-        return elapsed.minute ?? 0
+        return ""
     }
     
     

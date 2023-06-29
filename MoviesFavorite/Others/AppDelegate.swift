@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
          //UserDefaults.standard.set(Date(), forKey: "LastOpened")
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

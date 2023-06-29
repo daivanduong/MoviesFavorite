@@ -43,7 +43,7 @@
                                     <constraint firstAttribute="height" constant="30" id="V11-5F-thI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GFU-kk-VlT">
@@ -83,7 +83,9 @@
                                     <constraint firstAttribute="height" constant="35" id="g8v-pz-rDN"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Like"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Like">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="tapOnLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pMZ-F8-b0q"/>
                                 </connections>
@@ -118,9 +120,9 @@
             <connections>
                 <outlet property="imgThumb" destination="5uq-rz-A61" id="pez-cj-0Q4"/>
                 <outlet property="likeButton" destination="Yb0-Z2-Qf2" id="Rpz-fa-ckI"/>
-                <outlet property="name" destination="bjL-qa-jjr" id="fbg-ya-bvh"/>
                 <outlet property="price" destination="bgI-aN-rBi" id="IKE-Kc-dCm"/>
                 <outlet property="primaryGenre" destination="9aB-sA-Nm4" id="asi-uD-VT6"/>
+                <outlet property="trackName" destination="bjL-qa-jjr" id="AKR-61-hCL"/>
                 <outlet property="year" destination="SU5-Fa-sGQ" id="h9L-36-Yi2"/>
             </connections>
             <point key="canvasLocation" x="196.94656488549617" y="-1.0563380281690142"/>

@@ -9,7 +9,7 @@ import UIKit
 
 class MovieViewCell: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var trackName: UILabel!
     @IBOutlet weak var primaryGenre: UILabel!
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var price: UILabel!
