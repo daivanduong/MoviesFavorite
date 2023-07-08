@@ -7,33 +7,40 @@
 
 import UIKit
 
-class PopularViewController: UIViewController {
-    
+
+
+
+class PopularViewController: UIViewController, UISearchBarDelegate, UISearchControllerDelegate {
     
     var viewModel: PopularViewModelProtocol = PopularViewMoel()
-    let searchControler = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController!
+    var searchResultsController: SearchResultsViewController!
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeOpenedLb: UILabel!
+    @IBOutlet weak var popularText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-       
         setupView()
         setupNavigatitonBar()
-        //updateSearchResults(for: searchControler)
+
     }
     
     
     func setupNavigatitonBar() {
         title = "Search"
-        searchControler.searchResultsUpdater = self
-        searchControler.obscuresBackgroundDuringPresentation = false
-        searchControler.searchBar.placeholder = "Search..."
-        navigationItem.searchController = searchControler
-        searchControler.searchBar.searchTextField.delegate = self
+        searchResultsController = SearchResultsViewController()
+        searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.searchTextField.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search..."
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         
     }
 
@@ -52,16 +59,12 @@ class PopularViewController: UIViewController {
 }
 extension PopularViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        print(text)
+        let searchText = searchController.searchBar.text ?? ""
+        searchResultsController.arrActionMovieTitles = viewModel.getArraySuggestName(searchText: searchText)
+        searchResultsController.tableView.reloadData()
         
-//        let vc = searchController.searchResultsController as! SearchViewController
-//        vc.viewModel.callAPI()
     }
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        // To do: Implement search method
-    }
+   
 }
 
 extension PopularViewController: UISearchTextFieldDelegate {
@@ -69,11 +72,10 @@ extension PopularViewController: UISearchTextFieldDelegate {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "searchViewController") as! SearchViewController
         if textField.text != "" {
-            let vm = SearchViewModel(titleMovie: textField.text!)
+            let vm = SearchViewModel(titleSearch: textField.text!)
             vc.viewModel = vm
             navigationController?.pushViewController(vc, animated: true)
         }
-       
     }
 }
 
@@ -94,7 +96,7 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "searchViewController") as! SearchViewController
-        let vm = SearchViewModel(titleMovie: viewModel.getTitleMoviePopular(indexPath: indexPath))
+        let vm = SearchViewModel(titleSearch: viewModel.getTitleMoviePopular(indexPath: indexPath))
         vc.viewModel = vm
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -10,24 +10,29 @@ import Foundation
 class SearchViewModel: SearchViewModelProtocol {
     private var movie: MovieAPI?
     private var movieFavorite = [Movie]()
-    private var titleMovie: String?
+    private var titleSearch: String?
     private var check = true
     var reloadUI: (() -> ())?
     
-    init(titleMovie: String?) {
-        self.titleMovie = titleMovie
+    init(titleSearch: String?) {
+        self.titleSearch = titleSearch
+    }
+    
+    func getTitle() -> String {
+        return titleSearch ?? ""
     }
     
     func callAPI() {
         let url = URL(string: "https://itunes.apple.com/search")
-        URLSession.shared.dataTask(with: urlComponents(url: url!, categories: titleMovie!)) { [weak self] data, response , error in
+        URLSession.shared.dataTask(with: urlComponents(url: url!, titleSearch: titleSearch!)) { [weak self] data, response , error in
             if let data = data {
                 let movielData = try? JSONDecoder().decode(MovieAPI.self, from: data)
                 if movielData != nil {
-                    if movielData?.resultCount != 0 {
-                        self?.movie = movielData
-                    }
+                    self?.movie = movielData
                 } else {
+                    self?.check = false
+                }
+                if movielData?.resultCount == 0 {
                     self?.check = false
                 }
                 self?.reloadUI?()
@@ -57,16 +62,16 @@ class SearchViewModel: SearchViewModelProtocol {
         return (movie?.results?[indexPath.row])!
     }
     
-    func urlComponents(url: URL, categories: String) -> URL {
+    func urlComponents(url: URL, titleSearch: String) -> URL {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        let queryItemCategories = URLQueryItem(name: "term", value: categories)
+        let queryItemCategories = URLQueryItem(name: "term", value: titleSearch)
         components?.queryItems = [queryItemCategories]
         return (components?.url)!
     }
     
     func covertStringToDate(string: String) -> Int {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = dateFormatter.date(from: string)!
         let calendar = Calendar.current
@@ -83,12 +88,12 @@ class SearchViewModel: SearchViewModelProtocol {
                 MovieFavorite.trackId == data?.trackId
             })
             if checkUniqueItemInFavorites == false {
-                movieFavorite.append(data!)
+                movieFavorite.insert(data!, at: 0)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
             }
         } else {
             var movieFavorite = [Movie]()
-            movieFavorite.append(data!)
+            movieFavorite.insert(data!, at: 0)
             UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
         }
         

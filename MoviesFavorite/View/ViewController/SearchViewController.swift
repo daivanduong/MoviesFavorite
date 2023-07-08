@@ -19,6 +19,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        title = viewModel.getTitle()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -56,12 +56,12 @@ class DetailViewModel: DetailViewModelProtocol {
                 MovieFavorite.trackId == movie?.trackId
             })
             if checkUniqueItemInFavorites == false {
-                movieFavorite.append(movie!)
+                movieFavorite.insert(movie!, at: 0)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(movieFavorite), forKey: "MovieFavorite")
             }
         } else {
             var arrMovies = [Movie]()
-            arrMovies.append(movie!)
+            arrMovies.insert(movie!, at: 0)
             UserDefaults.standard.set(try? PropertyListEncoder().encode(arrMovies), forKey: "MovieFavorite")
         }
         
@@ -69,7 +69,7 @@ class DetailViewModel: DetailViewModelProtocol {
     
     func covertStringToDate(string: String) -> Int {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let date = dateFormatter.date(from: string)!
         let calendar = Calendar.current
