@@ -37,12 +37,9 @@ class DetailViewController: UIViewController {
     }
     
     func setupView() {
-        viewModel.reloadUI = {
-            self.tableView.reloadData()
-        }
-        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isScrollEnabled = false
         
         let nib = UINib(nibName: "MovieViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "movieViewCell")

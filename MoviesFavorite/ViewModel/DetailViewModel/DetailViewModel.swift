@@ -8,7 +8,6 @@
 import Foundation
 
 class DetailViewModel: DetailViewModelProtocol {
-    var reloadUI: (() -> ())?
     private var movie: Movie?
     
     init (movie: Movie) {

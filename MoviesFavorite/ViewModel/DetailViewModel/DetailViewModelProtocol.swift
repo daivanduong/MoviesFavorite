@@ -8,7 +8,6 @@
 import Foundation
 
 protocol DetailViewModelProtocol {
-    var reloadUI: (() -> ())? {get set}
     func getDataInMovieDetail(indexPath: IndexPath) -> (trackName: String, primaryGenre:String, year: Int, price: Double, imgURL: URL )
     func getDescription() -> String
     func getUrlVideoPreview() -> URL

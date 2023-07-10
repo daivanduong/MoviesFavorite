@@ -89,6 +89,16 @@ extension PopularViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleMoviePopular.text = viewModel.getTitleMoviePopular(indexPath: indexPath)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "Popular Movies"
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
